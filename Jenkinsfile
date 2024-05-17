@@ -6,12 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/Rajakumaran-dev/devops-build.git'
-            }
-        }
-
         stage('Build') {
             steps {
                 sh './build.sh'
