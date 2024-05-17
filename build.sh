@@ -8,12 +8,6 @@ REPO_URL="https://github.com/Rajakumaran-dev/devops-build.git"
 DOCKER_IMAGE_NAME="reactapp"
 DOCKERFILE_PATH="."
 
-# Clone the repository
-echo "Cloning repository from $REPO_URL"
-git clone $REPO_URL
-
-# Navigate to the repository directory
-cd your-repo
 
 # Build the Docker image for development
 echo "Building Docker image $DOCKER_IMAGE_NAME:dev"
