@@ -1,44 +1,38 @@
 pipeline {
     agent any
-    
+
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('docker-hub-credentials-id')  // Jenkins credentials ID
+    }
+
     stages {
-        stage('Build Docker Image') {
+        stage('Build') {
             steps {
                 sh 'bash build.sh'
             }
         }
-	stage('Checkout') {
+
+        stage('Deploy') {
             steps {
-                git 'https://github.com/Rajakumaran-dev/devops-build.git'
-            }
-        }
-        stage('Push Docker Image to Dev') {
-            when {
-                branch 'dev'
-            }
-            steps {
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-                        docker.image('prinzspace/reactapp-dev:latest').push()
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials-id', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]) {
+                    script {
+                        // Deploy to development server
+                        sh '''
+                        export DOCKERHUB_USERNAME=$DOCKERHUB_USERNAME
+                        export DOCKERHUB_PASSWORD=$DOCKERHUB_PASSWORD
+                        export IMAGE_TAG=latest
+                        ./deploy.sh
+                        '''
+
+                        // Deploy to production server
+                        sh '''
+                        export DOCKERHUB_USERNAME=$DOCKERHUB_USERNAME
+                        export DOCKERHUB_PASSWORD=$DOCKERHUB_PASSWORD
+                        export IMAGE_TAG=latest
+                        ./deploy.sh
+                        '''
                     }
                 }
-            }
-        }
-        stage('Push Docker Image to Prod') {
-            when {
-                branch 'main'
-            }
-            steps {
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-                        docker.image('prinzspace/reactapp-prod:latest').push()
-                    }
-                }
-            }
-        }
-		stage('Deploy Docker Image') {
-            steps {
-                sh 'bash deploy.sh'
             }
         }
     }
