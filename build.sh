@@ -19,4 +19,4 @@ echo "Building Docker image $DOCKER_IMAGE_PROD:latest"
 docker build -t reactapp-prod:latest $DOCKERFILE_PATH
 
 # Print success message
-echo "Docker images $DOCKER_IMAGE_NAME:latest and $DOCKER_IMAGE_NAME:latest built successfully"
+echo "Docker images $DOCKER_IMAGE_DEV:latest and $DOCKER_IMAGE_PROD:latest built successfully"

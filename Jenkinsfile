@@ -7,6 +7,11 @@ pipeline {
                 sh 'bash build.sh'
             }
         }
+	stage('Checkout') {
+            steps {
+                git 'https://github.com/Rajakumaran-dev/devops-build.git'
+            }
+        }
         stage('Push Docker Image to Dev') {
             when {
                 branch 'dev'
@@ -21,7 +26,7 @@ pipeline {
         }
         stage('Push Docker Image to Prod') {
             when {
-                branch 'master'
+                branch 'main'
             }
             steps {
                 script {
