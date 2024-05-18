@@ -5,17 +5,18 @@ set -e
 
 # Define variables
 REPO_URL="https://github.com/Rajakumaran-dev/devops-build.git"
-DOCKER_IMAGE_NAME="reactapp"
+DOCKER_IMAGE_DEV="reactapp-dev"
+DOCKER_IMAGE_PROD="reactapp-prod"
 DOCKERFILE_PATH="."
 
 
 # Build the Docker image for development
-echo "Building Docker image $DOCKER_IMAGE_NAME:dev"
-docker build -t $DOCKER_IMAGE_NAME:dev $DOCKERFILE_PATH
+echo "Building Docker image $DOCKER_IMAGE_DEV:latest"
+docker build -t reactapp-dev:latest $DOCKERFILE_PATH
 
 # Build the Docker image for production
-echo "Building Docker image $DOCKER_IMAGE_NAME:prod"
-docker build -t $DOCKER_IMAGE_NAME:prod $DOCKERFILE_PATH
+echo "Building Docker image $DOCKER_IMAGE_PROD:latest"
+docker build -t reactapp-prod:latest $DOCKERFILE_PATH
 
 # Print success message
-echo "Docker images $DOCKER_IMAGE_NAME:dev and $DOCKER_IMAGE_NAME:prod built successfully"
+echo "Docker images $DOCKER_IMAGE_DEV:latest and $DOCKER_IMAGE_PROD:latest built successfully"
