@@ -21,7 +21,7 @@ pipeline {
                         export DOCKERHUB_USERNAME=$DOCKERHUB_USERNAME
                         export DOCKERHUB_PASSWORD=$DOCKERHUB_PASSWORD
                         export IMAGE_TAG=latest
-                        sh 'bash deploy.sh'
+                        ./deploy.sh
                         '''
 
                         // Deploy to production server
@@ -29,7 +29,7 @@ pipeline {
                         export DOCKERHUB_USERNAME=$DOCKERHUB_USERNAME
                         export DOCKERHUB_PASSWORD=$DOCKERHUB_PASSWORD
                         export IMAGE_TAG=latest
-                        sh 'bash deploy.sh'
+                        ./deploy.sh
                         '''
                     }
                 }
