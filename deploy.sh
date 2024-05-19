@@ -7,7 +7,7 @@ set -e
 DOCKER_IMAGE_DEV="reactapp-dev"
 DOCKER_IMAGE_PROD="reactapp-prod"
 DOCKERHUB_USERNAME="prinzspace"
-DOCKERHUB_PASSWORD="R@jesh1997"
+DOCKERHUB_PASSWORD="91AJJFREWQUvvDBVCDetRRT8c0VNqWeiyt"
 COMPOSE_FILE="docker-compose.yml"
 
 # Log in to Docker Hub
